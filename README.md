@@ -41,7 +41,7 @@ Create a `.env` file in the project root with your credentials:
 ```env
 EMAIL=your.email@example.com
 PASSWORD=your_password
-BASE_URI=https://ais.usvisa-info.com/es-es/niv
+COUNTRY_CODE=es
 SCHEDULE_ID=your_schedule_id
 FACILITY_ID=your_facility_id
 REFRESH_DELAY=3
@@ -53,8 +53,7 @@ REFRESH_DELAY=3
 |----------|-------------|-------------|
 | `EMAIL` | Your login email | Your credentials for ais.usvisa-info.com |
 | `PASSWORD` | Your login password | Your credentials for ais.usvisa-info.com |
-| `BASE_URI` | AIS base URL through `/niv` | Found in URL when rescheduling: <br>`https://ais.usvisa-info.com/es-es/niv/schedule/{SCHEDULE_ID}/continue_actions` -> use `https://ais.usvisa-info.com/es-es/niv` |
-| `COUNTRY_CODE` | Optional fallback for older `en-{country}` URLs | Examples: `br`, `fr`, `de`; ignored when `BASE_URI` is set |
+| `COUNTRY_CODE` | Your AIS country code | Found in URL: `https://ais.usvisa-info.com/en-{COUNTRY_CODE}/` <br>Examples: Spain = `es`, Brazil = `br`, France = `fr`, Germany = `de` |
 | `SCHEDULE_ID` | Your appointment schedule ID | Found in URL when rescheduling: <br>`https://ais.usvisa-info.com/{locale}/niv/schedule/{SCHEDULE_ID}/continue_actions` |
 | `FACILITY_ID` | Your consulate facility ID | Found in network calls when selecting dates, or inspect the date selector dropdown <br>Example: Paris = `44` |
 | `REFRESH_DELAY` | Seconds between checks | Optional, defaults to 3 seconds |

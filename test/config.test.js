@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { getBaseUri, getConfig } from '../src/lib/config.js';
 
-const keys = ['EMAIL', 'PASSWORD', 'SCHEDULE_ID', 'FACILITY_ID', 'BASE_URI', 'COUNTRY_CODE', 'REFRESH_DELAY'];
+const keys = ['EMAIL', 'PASSWORD', 'SCHEDULE_ID', 'FACILITY_ID', 'COUNTRY_CODE', 'REFRESH_DELAY'];
 const original = Object.fromEntries(keys.map(key => [key, process.env[key]]));
 
 function setEnv(values) {
@@ -18,11 +18,12 @@ try {
     PASSWORD: 'secret',
     SCHEDULE_ID: '123',
     FACILITY_ID: '7',
-    BASE_URI: 'https://ais.usvisa-info.com/es-es/niv/',
+    COUNTRY_CODE: 'es',
     REFRESH_DELAY: '10'
   });
 
-  assert.equal(getConfig().baseUri, 'https://ais.usvisa-info.com/es-es/niv');
+  assert.equal(getConfig().countryCode, 'es');
+  assert.equal(getBaseUri('es'), 'https://ais.usvisa-info.com/en-es/niv');
   assert.equal(getBaseUri('fr'), 'https://ais.usvisa-info.com/en-fr/niv');
 
   setEnv({
@@ -33,7 +34,7 @@ try {
     COUNTRY_CODE: 'fr'
   });
 
-  assert.equal(getConfig().baseUri, 'https://ais.usvisa-info.com/en-fr/niv');
+  assert.equal(getConfig().countryCode, 'fr');
 } finally {
   for (const [key, value] of Object.entries(original)) {
     if (value === undefined) {
