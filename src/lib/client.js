@@ -1,7 +1,6 @@
 import fetch from "node-fetch";
 import cheerio from 'cheerio';
 import { log } from './utils.js';
-import { getBaseUri } from './config.js';
 
 // Common headers
 const COMMON_HEADERS = {
@@ -12,8 +11,8 @@ const COMMON_HEADERS = {
 };
 
 export class VisaHttpClient {
-  constructor(countryCode, email, password) {
-    this.baseUri = getBaseUri(countryCode);
+  constructor(baseUri, email, password) {
+    this.baseUri = baseUri;
     this.email = email;
     this.password = password;
   }
